@@ -227,7 +227,7 @@ class SoapClient(object):
                 header.import_node(subheader)
                 
         self.xml_request = request.as_xml()
-        self.xml_response = self.send(method, self.xml_request)
+        self.xml_response = self.send(method, self.xml_request).decode("utf8", "ignore")
         response = SimpleXMLElement(self.xml_response, namespace=self.namespace, 
                                     jetty=self.__soap_server in ('jetty', ))
         if self.exceptions and response("Fault", ns=list(soap_namespaces.values()), error=False):
