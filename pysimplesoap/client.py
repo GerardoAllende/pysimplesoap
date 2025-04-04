@@ -232,7 +232,6 @@ class SoapClient(object):
                                     jetty=self.__soap_server in ('jetty', ))
         if self.exceptions and response("Fault", ns=list(soap_namespaces.values()), error=False):
             raise SoapFault(str(response.faultcode), str(response.faultstring))
-        self.xml_response = self.xml_response.decode("utf8", "ignore")
         return response
     
     
